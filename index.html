@@ -17,7 +17,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const address=(r,c)=>XLSX.utils.encode_cell({r,c}), key=(s,r,c)=>s+'|'+r+'|'+c;
 const readCell=(s,r,c)=>{const x=wb.Sheets[s][address(r,c)];return x?String(x.v??''):''};
 const cleanHeader=v=>String(v||'').trim().toLowerCase().replace(/[^a-z0-9]/g,'');
-const metadataNames=new Set(['seqno','testno','testitem','dl','cim','cat','id','comment','testtime','testitemdescription','note','command','asc']);
+const metadataNames=new Set(['seqno','testno','testitem','dl','cim','cat','id','comment','testtime','testtimeus','testitemdescription','note','command','asc']);
 const specNames=new Set(['vcc','vccmv','vhh','vhhmv','vio','dcspec','dcspecua','forcecsb','forcecsbmv','forceso','forcesomv','startaddress','endaddress','data1','data2','data3','mrratio','timeout','timeoutus','twc','twcus','pulse']);
 const noSpec=v=>/^\*+$/.test(String(v??'').trim());
 const role=h=>{const n=cleanHeader(h.name);return specNames.has(n)?'spec':metadataNames.has(n)?'meta':'unknown'};
